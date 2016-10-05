@@ -1,0 +1,42 @@
+<% action = @cat.id.nil? ? cats_url : cat_url(@cat.id) %>
+<form action="<%= action %>" method="post">
+  <% unless @cat.id.nil? %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+  <section>
+    <label for="cat_name">Name</label>
+    <input type="text" name="cat[name]" id="cat_name" value="<%= @cat.name unless @cat.name.nil? %>">
+  </section>
+
+  <section>
+    <label>Sex</label>
+    <input type="radio" name="cat[sex]" id="cat_sex_male" value="M" <% if @cat.sex == "M" %>checked<% end %>>
+    <label for="cat_sex_male">Male</label>
+
+    <input type="radio" name="cat[sex]" id="cat_sex_female" value="F" <% if @cat.sex == "F" %>checked<% end %>>
+    <label for="cat_sex_female">Female</label>
+  </section>
+
+  <section>
+    <label for="cat_color">Color</label>
+    <select name="cat[color]" id="cat_color">
+      <option value="" disabled="true" selected>Select a color</option>
+      <% @colors.each do |color| %>
+        <option value="<%= color %>" <% if @cat.color == color %> selected<% end %>><%= color %></option>
+      <% end %>
+    </select>
+  </section>
+
+  <section>
+    <label for="cat_birth_date">Birth Date</label>
+    <input type="date" name="cat[birth_date]" id="cat_birth_date" value="<%= @cat.birth_date unless @cat.birth_date.nil? %>">
+  </section>
+
+  <section>
+    <label for="cat_description">Description</label>
+    <textarea name="cat[description]" id="cat_description"><%= @cat.description unless @cat.description.nil? %></textarea>
+  </section>
+
+  <button>Submit</button>
+</form>

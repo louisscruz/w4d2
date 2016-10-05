@@ -1,0 +1,15 @@
+<h3>Create Rental Request for <%= @cat.name %></h3>
+<form action="/cats/<%= @cat.id %>/cat_rental_requests" method="post">
+  <input type="hidden" name="cat_rental_request[cat_id]" value="<%= @cat.id %>">
+  <section>
+      <label for="rental_start_date">Start Date</label>
+      <input type="date" id="rental_start_date" name="cat_rental_request[start_date]">
+  </section>
+
+  <section>
+      <label for="rental_end_date">End Date</label>
+      <input type="date" id="rental_end_date" name="cat_rental_request[end_date]">
+  </section>
+
+  <button>Submit</button>
+</form>
